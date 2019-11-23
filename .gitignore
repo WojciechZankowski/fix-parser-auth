@@ -1,4 +1,9 @@
-# Project exclude paths
-/auth-api/target/
-/auth-app/target/
-/auth-core/target/
+/*.iml
+/*.ipr
+/*.iws
+/.idea
+/.classpath
+/.project
+/.settings
+*/*.iml
+target/
