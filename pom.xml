@@ -4,118 +4,86 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pl.zankowski.fixparser</groupId>
-    <artifactId>auth</artifactId>
+    <artifactId>auth-all</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <parent>
+        <groupId>pl.zankowski.fixparser</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <name>Fix Parser Auth</name>
+    <description>Authentication component for Fix Parser</description>
+    <url>https://github.com/OpenBlazar/fix-parser-auth.git</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>WojciechZankowski</id>
+            <name>Wojciech Zankowski</name>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/OpenBlazar/fix-parser-auth.git</connection>
+        <developerConnection>scm:git:git@github.com:OpenBlazar/fix-parser-auth.git
+        </developerConnection>
+        <url>https://github.com/OpenBlazar/fix-parser-auth.git</url>
+        <tag>master</tag>
+    </scm>
+
     <modules>
         <module>auth-app</module>
-        <module>auth-core</module>
+        <module>auth</module>
         <module>auth-api</module>
     </modules>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-
-    <properties>
-        <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>pl.zankowski.fixparser</groupId>
                 <artifactId>auth-api</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>pl.zankowski.fixparser</groupId>
-                <artifactId>auth-core</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <artifactId>auth</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>pl.zankowski.fixparser</groupId>
                 <artifactId>user-rest-client</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>pl.zankowski.fixparser</groupId>
                 <artifactId>core-swagger</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>pl.zankowski.fixparser</groupId>
                 <artifactId>core-api</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>pl.zankowski.fixparser</groupId>
                 <artifactId>common-security</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
-
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>0.9.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>1.5.20</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>2.9.9</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.9.9</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Greenwich.RELEASE</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven.compiler.plugin}</version>
-                    <configuration>
-                        <source>${maven.compiler.source}</source>
-                        <target>${maven.compiler.target}</target>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
 
 </project>
