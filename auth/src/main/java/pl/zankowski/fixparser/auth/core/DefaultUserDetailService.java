@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.zankowski.fixparser.user.api.AccountTO;
-import pl.zankowski.fixparser.user.api.UserNotFoundException;
 import pl.zankowski.fixparser.user.spi.UserService;
 
 import java.util.List;
@@ -27,21 +26,17 @@ public class DefaultUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        try {
-            final AccountTO account = userService.findAccountByEmail(username);
+        return userService.findAccountByEmail(username)
+                .map(this::map)
+                .orElseThrow(() -> new UsernameNotFoundException("User " + username + " not found."));
+    }
 
-            if (account == null) {
-                throw new UsernameNotFoundException("User not found.");
-            }
+    private User map(final AccountTO account) {
+        final List<SimpleGrantedAuthority> authorities = account.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.name()))
+                .collect(toList());
 
-            final List<SimpleGrantedAuthority> authorities = account.getRoles().stream()
-                    .map(role -> new SimpleGrantedAuthority(role.name()))
-                    .collect(toList());
-
-            return new User(account.getEmail(), account.getPassword(), authorities);
-        } catch (final UserNotFoundException e) {
-            throw new UsernameNotFoundException("User not found.");
-        }
+        return new User(account.getEmail(), account.getPassword(), authorities);
     }
 
 }
